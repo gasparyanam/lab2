@@ -28,7 +28,7 @@ class arr
         {
             delete []x;
             x = nullptr;
-        }
+        };
         double min_member()
         {
             double min = x[0];
