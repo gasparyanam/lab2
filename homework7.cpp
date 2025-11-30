@@ -41,7 +41,10 @@ class Jarang1 : public Baz
 	private:
 		double a;
 	public:
-		Jarang1(double *x1, int n1) : Baz(x1, n1){}
+		Jarang1(double *x1, int n1, double a1) : Baz(x1, n1)
+		{
+			a = a1;
+		}
 
 		void add_a()
 		{
@@ -82,8 +85,11 @@ int main()
 		cout << "x[" << i << "] = ";
 		cin >> xx[i];
 	}
-
-	Jarang1 obj1(xx, nn);
+	double a;
+	cout << "a = ";
+	cin >> a;
+	
+	Jarang1 obj1(xx, nn, a);
 	Jarang2 obj2(xx, nn);
 	obj1.element_output();
 	obj1.add_a();
