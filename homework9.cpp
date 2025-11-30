@@ -29,18 +29,26 @@ class Jar1 : protected Base
 
         student* getExcellentList(int &k)
         {
+
+            k = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (x[i].grade >= 50)
+                    k++;
+            }
             student *y = new student [k];
             if (y == nullptr)
                 exit (1);
-                
+            
+            int q = 0;
             for (int i = 0; i < n; i++)
             {
                 if (x[i].grade > 50)
                 {
-                    strcpy(y[k].surname, x[i].surname);
-                    y[k].pension = x[i].pension + 10000;
-                    y[k].grade = x[i].grade;
-                    k++;
+                    strcpy(y[q].surname, x[i].surname);
+                    y[q].pension = x[i].pension + 10000;
+                    y[q].grade = x[i].grade;
+                    q++;
                 }
             }
             return y;
@@ -56,27 +64,23 @@ class Jar2 : private Jar1
         void printnewlist()
         {
             int count;
-            count = 0;
-            for (int i = 0; i < n; i++)
+            
+            student *w = getExcellentList(count);
+            
+            if(count == 0)
             {
-                if(x[i].grade > 50)
-                    count++;             
+                cout << "0 Excellent students" << endl;
+                return;
             }
-            if (count)
+
+            cout << "New List" << endl;
+            for (int i = 0; i < count; i++)
             {
-                student *w = getExcellentList(count);
-                cout << "New List" << endl;
-
-                for (int i = 0; i < count; i++)
-                {
-                    cout << w[i].surname << " " << w[i].pension << " " << w[i].grade << endl;
-                }
-
-                delete []w;
-                w = nullptr;
+                cout << w[i].surname << " " << w[i].pension << " " << w[i].grade << endl;
             }
-            else 
-                cout << "0 Excellent students" << endl; 
+
+            delete []w;
+            w = nullptr;
         }
 };
 
